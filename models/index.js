@@ -24,7 +24,7 @@ const sequelize = new Sequelize('bizinsights', 'root', 'Shrutika@1995', {
   db.designation = require('./designation')(sequelize, DataTypes);
   db.user = require('./user')(sequelize, DataTypes);
 
- // db.sequelize.sync({force:false});
+ //db.sequelize.sync({force:false});
 
 //creates the table, dropping it first if it already existed
  // db.sequelize.sync({force:true});
