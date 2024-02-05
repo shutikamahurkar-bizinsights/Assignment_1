@@ -19,11 +19,6 @@ module.exports=(sequelize, DataTypes)=>{
     defaultValue: true,
 
     },
-    // CreatedDate: {
-    //   type: DataTypes.DATE,
-    //   defaultValue: DataTypes.NOW,
-    //   allowNull: true,
-    // },
   }, {
     timestamps: false, // Disable createdAt and updatedAt fields
   
