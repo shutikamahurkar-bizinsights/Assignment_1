@@ -1,35 +1,35 @@
 
 module.exports=(sequelize, DataTypes)=>{
-    const Department = sequelize.define('departments', {
+    const Holiday = sequelize.define('holidays', {
       // Model attributes are defined here
-      departmentId: {
+      holidayId: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false,
         unique: true
       },
-      departmentName: {
+      holidayName: {
         type: DataTypes.STRING,
         allowNull: false,   
         unique: true
       },
-    status :{
-    type: DataTypes.BOOLEAN,
-    defaultValue: true,
-
+    
+     holidayDate: {
+      type: DataTypes.DATE,
+      
     },
-    // CreatedDate: {
-    //   type: DataTypes.DATE,
-    //   defaultValue: DataTypes.NOW,
-    //   allowNull: true,
-    // },
+    status :{
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+    
+        },
   }, {
     timestamps: false, // Disable createdAt and updatedAt fields
   
 
  } );
     
-    return Department;
+    return Holiday;
     }
     

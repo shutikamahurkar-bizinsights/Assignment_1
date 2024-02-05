@@ -2,61 +2,69 @@
 module.exports=(sequelize, DataTypes)=>{
     const User = sequelize.define('users', {
     
-    UserId:{
+    userId:{
      type: DataTypes.INTEGER,
      primaryKey: true,
      autoIncrement: true,
      unique: true
     },
-   
-    FirstName:{
-     type: DataTypes.STRING,
-     allowNull: false,
+    userName: {
+      type: DataTypes.STRING,
+      allowNull: false,   
+      unique: true
     },
+  status :{
+  type: DataTypes.BOOLEAN,
+  defaultValue: true,
+  },
+    // FirstName:{
+    //  type: DataTypes.STRING,
+    //  allowNull: false,
+    // },
      
-    DesignationId:{
-    type: DataTypes.INTEGER, 
-    allowNull: false,  
-    },
+    // DesignationId:{
+    // type: DataTypes.INTEGER, 
+    // allowNull: false,  
+    // },
 
-    DepartmentId:{
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    },
+    // DepartmentId:{
+    // type: DataTypes.INTEGER,
+    // allowNull: false,
+    // },
 
-    EmailId:{
-     type: DataTypes.STRING,
-     allowNull: false,
-     unique: true
-    },
+    // EmailId:{
+    //  type: DataTypes.STRING,
+    //  allowNull: false,
+    //  unique: true
+    // },
 
-    Password:{
-     type: DataTypes.STRING,
-     allowNull: false,
-    },
+    // Password:{
+    //  type: DataTypes.STRING,
+    //  allowNull: false,
+    // },
    
-    IsEmailVerified:{
-    type: DataTypes.BOOLEAN,
-    defaultValue: false,
-    allowNull: false,
-    },
+    // IsEmailVerified:{
+    // type: DataTypes.BOOLEAN,
+    // defaultValue: false,
+    // allowNull: false,
+    // },
    
-    CreatedDate:{
-    type: DataTypes.DATE,
-    allowNull: false,
-    },
+    // CreatedDate:{
+    // type: DataTypes.DATE,
+    // allowNull: false,
+    // },
 
-    UserType: {
-    type:   DataTypes.ENUM,
-    values: ['admin', 'hr', 'employee'],
-    allowNull: false,
-    },
+    // UserType: {
+    // type:   DataTypes.ENUM,
+    // values: ['admin', 'hr', 'employee'],
+    // allowNull: false,
+    // },
 
-    UpdatedDate: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW,
-        allowNull: true,
-      },
+    // UpdatedDate: {
+    //     type: DataTypes.DATE,
+    //     defaultValue: DataTypes.NOW,
+    //     allowNull: true,
+    //   },
     }, {
       timestamps: false, // Disable createdAt and updatedAt fields
     });

@@ -1,6 +1,6 @@
 const { Sequelize,DataTypes } = require('sequelize');
 
-const sequelize = new Sequelize('bizinsights', 'root', 'Shrutika@1995', {
+const sequelize = new Sequelize('masters', 'root', 'Shrutika@1995', {
     host: '127.0.0.1',
     logging: false,
     port: 3306,
@@ -23,15 +23,21 @@ const sequelize = new Sequelize('bizinsights', 'root', 'Shrutika@1995', {
   db.department = require('./department')(sequelize, DataTypes);
   db.designation = require('./designation')(sequelize, DataTypes);
   db.user = require('./user')(sequelize, DataTypes);
+  db.holiday = require('./holiday')(sequelize, DataTypes);
+  db.project = require('./project')(sequelize, DataTypes);
+  db.shift = require('./shift')(sequelize, DataTypes);
+
 
  //db.sequelize.sync({force:false});
 
 //creates the table, dropping it first if it already existed
- // db.sequelize.sync({force:true});
- db.designation.sync({ force: false });
- db.department.sync({ force: false });
- db.user.sync({ force: false });
+  db.sequelize.sync({force:true});
+
+ // db.designation.sync({ force: true });
+ //db.department.sync({ force: true });
+//  db.user.sync({ force: false });
 console.log("The table for the User model was just (re)created!");
 
   console.log("All models were synchronized successfully.");
-  module.exports = db;  //making available
+  //module.exports = db;  
+

@@ -1,35 +1,31 @@
 
 module.exports=(sequelize, DataTypes)=>{
-    const Department = sequelize.define('departments', {
+    const Project = sequelize.define('projects', {
       // Model attributes are defined here
-      departmentId: {
+      projectId: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false,
         unique: true
       },
-      departmentName: {
+      projectName: {
         type: DataTypes.STRING,
         allowNull: false,   
         unique: true
       },
+    
     status :{
-    type: DataTypes.BOOLEAN,
-    defaultValue: true,
-
-    },
-    // CreatedDate: {
-    //   type: DataTypes.DATE,
-    //   defaultValue: DataTypes.NOW,
-    //   allowNull: true,
-    // },
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+    
+        },
   }, {
     timestamps: false, // Disable createdAt and updatedAt fields
   
 
  } );
     
-    return Department;
+    return Project;
     }
     
