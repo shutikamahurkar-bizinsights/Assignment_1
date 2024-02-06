@@ -12,6 +12,7 @@ const sequelize = new Sequelize('masters', 'root', 'Shrutika@1995', {
   
   try {
      sequelize.authenticate();
+     console.log();
     console.log('Connection has been established successfully.');
   } catch (error) {
     console.error('Unable to connect to the database:', error);
@@ -28,16 +29,22 @@ const sequelize = new Sequelize('masters', 'root', 'Shrutika@1995', {
   db.shift = require('./shift')(sequelize, DataTypes);
 
 
- //db.sequelize.sync({force:false});
-
+ 
 //creates the table, dropping it first if it already existed
-  db.sequelize.sync({force:true});
+ // db.sequelize.sync({force:false});
 
- // db.designation.sync({ force: true });
- //db.department.sync({ force: true });
-//  db.user.sync({ force: false });
-console.log("The table for the User model was just (re)created!");
+db.designation.sync({ force: false });
+ db.department.sync({ force: false });
+ db.user.sync({ force: false });
+ db.holiday.sync({force: false});
+ db.project.sync({force: false});
+ db.shift.sync({force: false});
 
+//console.log("The table for the User model was just (re)created!");
+ 
   console.log("All models were synchronized successfully.");
-  //module.exports = db;  
+  console.log();
+  console.log('=================================');
+
+  module.exports = db;  
 

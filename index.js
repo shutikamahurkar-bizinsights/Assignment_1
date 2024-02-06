@@ -13,7 +13,9 @@ app.get('/', function (req, res) {
   res.send('Hello World, Working on assignment 1');
 });
 
-app.post('/addUser',userCtrl.addUser);
+//app.post('/registerUser',userCtrl.registerUser)
+
+app.post('/registeration',userCtrl.registeration);
 app.patch('/user/:UserId',userCtrl.updateUser);
 app.delete('/user/:UserId',userCtrl.deleteUser);
 app.get('/users',userCtrl.getUsers);
@@ -31,8 +33,8 @@ app.delete('/designation/:designationId',designationCtrl.deleteDesignation);
 app.get('/designations',designationCtrl.getDesignations);
 app.get('/designation/:designationId',designationCtrl.getDesignation);
 
-app.patch('/updatePassword',userCtrl.updatePassword);
-app.post('/signin',userCtrl.signIn);
+app.patch('/forgetPassword',userCtrl.forgetPassword);
+app.post('/login',userCtrl.login);
 
 app.listen(3000,()=>{
   console.log('App is running on : http://localhost:3000')

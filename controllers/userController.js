@@ -1,12 +1,19 @@
 var db=require('../models');
 var User=db.user;
 
-var addUser = async (req,res) => {
+
+var registeration = async (req,res) => {
     const data = req.body;
-    const currDate = new Date();
-    req.body.CreatedDate = currDate;
-    const user = await User.create(data);
-    res.status(201).json(user);
+    //const currDate = new Date();
+    //req.body.CreatedDate = currDate;
+    console.log(req.body);
+    try{
+        const user = await User.create(data);
+    }
+    catch (error) {
+        console.error( error);
+      }
+    res.status(201).json(data);
 }
 
 var updateUser = async (req,res) =>{
@@ -46,14 +53,14 @@ var getUsers = async (req,res)=>{
 
  }
 
- var signIn= async(req,res)=>{
+ var login= async(req,res)=>{
     const data = req.body;
     console.log(data);
 
     const user = await User.findOne({
         where : {
-            EmailId:data.EmailId,
-            Password:data.Password,
+            emailId:data.emailId,
+            password:data.password,
         }
     });
     if(user==null){
@@ -66,12 +73,12 @@ var getUsers = async (req,res)=>{
     //res.status(200).json({user})
  }
 
- var updatePassword = async (req,res)=>{
+ var forgetPassword = async (req,res)=>{
     const data = req.body;
     req.body.UpdatedDate=new Date();
     const user = await User.update(data,{
         where:{
-            UserId :data.UserId,       
+            userId :data.userId,       
         }
     });
     res.status(201).json(user);
@@ -80,12 +87,13 @@ var getUsers = async (req,res)=>{
 
 
 module.exports={
-    addUser,
+    
+    registeration,
     updateUser,
     deleteUser,
     getUsers,
     getUser,
-    signIn,
-    updatePassword
+    login,
+    forgetPassword
     
 }
