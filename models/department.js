@@ -12,7 +12,13 @@ module.exports=(sequelize, DataTypes)=>{
       departmentName: {
         type: DataTypes.STRING,
         allowNull: false,   
-        unique: true
+        unique: true,
+        validate:{
+          isAlpha: {
+            args: true,
+            msg: "Only alphabets are allowed"
+        }
+        }
       },
     status :{
     type: DataTypes.BOOLEAN,

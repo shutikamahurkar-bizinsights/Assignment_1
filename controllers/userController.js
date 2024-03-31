@@ -4,16 +4,9 @@ var User=db.user;
 
 var registeration = async (req,res) => {
     const data = req.body;
-    //const currDate = new Date();
-    //req.body.CreatedDate = currDate;
-    console.log(req.body);
-    try{
         const user = await User.create(data);
-    }
-    catch (error) {
-        console.error( error);
-      }
-    res.status(201).json(data);
+        res.status(201).json({user});
+   
 }
 
 var updateUser = async (req,res) =>{
@@ -63,14 +56,8 @@ var getUsers = async (req,res)=>{
             password:data.password,
         }
     });
-    if(user==null){
-        res.status(404).json({message:'user unauthorized'})
-    }
-    else{
-        res.status(200).json({message:'user authorized'})
-    }
-    //console.log(user);
-    //res.status(200).json({user})
+    
+    res.status(200).json({user})
  }
 
  var forgetPassword = async (req,res)=>{

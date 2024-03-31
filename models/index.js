@@ -12,7 +12,9 @@ const sequelize = new Sequelize('masters', 'root', 'Shrutika@1995', {
   
   try {
      sequelize.authenticate();
-     console.log();
+    
+     console.log('==================================================================');
+
     console.log('Connection has been established successfully.');
   } catch (error) {
     console.error('Unable to connect to the database:', error);
@@ -43,8 +45,6 @@ db.designation.sync({ force: false });
 //console.log("The table for the User model was just (re)created!");
  
   console.log("All models were synchronized successfully.");
-  console.log();
-  console.log('=================================');
 
   module.exports = db;  
 

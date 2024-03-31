@@ -9,78 +9,95 @@ module.exports=(sequelize, DataTypes)=>{
   },
   userName: {
     type: DataTypes.STRING,
-    allowNull: false,   
-    unique: true
+   //allowNull: false,   
+    unique: true,
+    // validate:{
+    //   isAlpha: {
+    //     args: true,
+    //     msg: "incorrect format, Only alphabets are allowed"
+    // }
+    // }
   },
   emailId:{
     type: DataTypes.STRING,
-    allowNull: false,
-    unique: true
+   //allowNull: false,
+    unique: true,
+    // validate:{
+    //   isEmail: {
+    //     args: true,
+    //     msg: "Email format incorrect"
+    // }
+    // }
    },
    mobile:{
     type: DataTypes.INTEGER,
-    allowNull: false,
+   //allowNull: false,
     },
     password:{
       type: DataTypes.STRING,
-      allowNull: false,
+     //allowNull: false,
      },
      userType: {
       type:   DataTypes.ENUM,
       values: ['admin', 'hr', 'employee','project manager'],
-      allowNull: false,
+     allowNull: true,
       },
     department: {
       type: DataTypes.STRING,
-      allowNull: false,
+     //allowNull: false,
     },
     designation: {
       type: DataTypes.STRING,
-      allowNull: false,
+     //allowNull: false,
     },
     shift: {
       type: DataTypes.STRING,
-      allowNull: false,
+     //allowNull: false,
     },
     createdDate: {
-      type: DataTypes.DATE,
-      allowNull: true,
-    },
-    shift: {
       type: DataTypes.STRING,
-      allowNull: false,
+
+      //type: DataTypes.DATE,
+      //allowNull: true,
     },
+    
     gender: {
       type: DataTypes.STRING,
-      allowNull: false,
+     //allowNull: false,
     },
     marital: {
       type: DataTypes.STRING,
-      allowNull: false,
+     //allowNull: false,
     },
     salaryType: {
       type: DataTypes.STRING,
-      allowNull: false,
+     //allowNull: false,
     },
     joiningDate: {
-      type: DataTypes.DATE,
-      allowNull: true,
+      type: DataTypes.STRING,
+
+      //type: DataTypes.DATE,
+      //allowNull: true,
     },
     probitionDate: {
-      type: DataTypes.DATE,
-      allowNull: true,
+      type: DataTypes.STRING,
+
+      //type: DataTypes.DATE,
+     // allowNull: true,
     },
     employementDate: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
+
+      //type: DataTypes.DATE,
       allowNull: true,
     },
     currentAddress: {
       type: DataTypes.STRING,
-      allowNull: false,
+     //allowNull: false,
     },
     permanentAddress: {
       type: DataTypes.STRING,
-      allowNull: false,
+     //allowNull: false,
     },
 status :{
 type: DataTypes.BOOLEAN,
@@ -89,7 +106,9 @@ defaultValue: true,
   
   }, {
     timestamps: false, // Disable createdAt and updatedAt fields
-  });
+  
+}
+);
 
   return User;
 };
