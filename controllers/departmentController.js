@@ -1,17 +1,26 @@
 var db = require('../models');
 var Department = db.department;
 
+
 var addDept = async (req, res) => {
-    const data = {};
-    const dept = {};
     try {
-        data = req.body;
-        dept = await Department.create(data);
-        res.status(201).json(dept);
+        const data = req.body;
+
+        const [dept, created] = await Department.findOrCreate({
+            where: { departmentName: data.departmentName },
+            defaults: data // Data to create if not found
+        });
+
+        if (created) {
+            res.status(201).json(dept);
+        } else {
+            res.status(200).json({ message: 'Department already exists', department: dept });
+        }
     } catch (error) {
         console.error("Error occurred while adding department:", error);
-        res.status(500).json({ data: req.body, error: "Only alphabets are allowed for departmentName" });
+        res.status(500).json({ error: "Internal server error" });
     }
+
 }
 
 var updateDept = async (req, res) => {
@@ -42,6 +51,7 @@ var getDepts = async (req, res) => {
 }
 
 var getDept = async (req, res) => {
+    console.log('Department.findOne');
     const data = await Department.findOne({
         where: {
             DepartmentId: req.params.deptId
@@ -56,6 +66,7 @@ module.exports = {
     updateDept,
     deleteDept,
     getDepts,
-    getDept
+    getDept,
+    updateUser
 
 }
