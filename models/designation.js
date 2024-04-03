@@ -1,7 +1,7 @@
 
 module.exports=(sequelize, DataTypes)=>{
   const Designation = sequelize.define('designation', {
-    // Model attributes are defined here
+  
     designationId : {
       type: DataTypes.INTEGER,
         primaryKey: true,

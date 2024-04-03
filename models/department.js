@@ -1,7 +1,7 @@
 
 module.exports=(sequelize, DataTypes)=>{
     const Department = sequelize.define('departments', {
-      // Model attributes are defined here
+     
       departmentId: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -13,12 +13,7 @@ module.exports=(sequelize, DataTypes)=>{
         type: DataTypes.STRING,
         allowNull: false,   
         unique: true,
-        validate:{
-          isAlpha: {
-            args: true,
-            msg: "Only alphabets are allowed"
-        }
-        }
+       
       },
     status :{
     type: DataTypes.BOOLEAN,
@@ -26,7 +21,7 @@ module.exports=(sequelize, DataTypes)=>{
 
     },
   }, {
-    timestamps: false, // Disable createdAt and updatedAt fields
+    timestamps: false, 
   
 
  } );

@@ -8,7 +8,7 @@ var addDept = async (req, res) => {
 
         const [dept, created] = await Department.findOrCreate({
             where: { departmentName: data.departmentName },
-            defaults: data // Data to create if not found
+            defaults: data 
         });
 
         if (created) {
@@ -24,40 +24,99 @@ var addDept = async (req, res) => {
 }
 
 var updateDept = async (req, res) => {
-    const data = req.body;
-    console.log(data);
+    try {
+        const data = req.body;
+        const deptId = req.params.deptId;
 
-    const dept = await Department.update(data, {
-        where: {
-            DepartmentId: req.params.deptId
+       
+        const existingDept = await Department.findOne({
+            where: {
+                DepartmentId: deptId
+            }
+        });
+
+       
+        if (!existingDept) {
+            return res.status(404).json({ error: 'Department not found' });
         }
 
-    });
-    res.status(201).json(dept);
-}
+      
+        await Department.update(data, {
+            where: {
+                DepartmentId: deptId
+            }
+        });
+
+        res.status(200).json({ message: 'Department updated successfully' });
+    } catch (error) {
+        console.error("Error occurred while updating department:", error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+};
+
+
 
 var deleteDept = async (req, res) => {
-    const data = await Department.destroy({
-        where: {
-            DepartmentId: req.params.deptId
+    try {
+        const deptId = req.params.deptId;
+
+        const existingDept = await Department.findOne({
+            where: {
+                DepartmentId: deptId
+            }
+        });
+
+        if (!existingDept) {
+            return res.status(404).json({ error: 'Department not found' });
         }
-    });
-    res.status(201).json(data);
+
+        await Department.destroy({
+            where: {
+                DepartmentId: deptId
+            }
+        });
+
+        res.status(200).json({ message: 'Department deleted successfully' });
+    } catch (error) {
+        console.error("Error occurred while deleting department:", error);
+        res.status(500).json({ error: "Internal server error" });
+    }
 }
 
 var getDepts = async (req, res) => {
-    const data = await Department.findAll({});
-    res.status(200).json({ data })
+    try {
+        const departments = await Department.findAll({});
+
+        if (departments.length > 0) {
+            return res.status(200).json({ message: 'Records exist', count: departments.length });
+        } else {
+            return res.status(404).json({ message: 'No records found' });
+        }
+    } catch (error) {
+        console.error("Error occurred while checking records:", error);
+        res.status(500).json({ error: "Internal server error" });
+    }
 }
 
 var getDept = async (req, res) => {
-    console.log('Department.findOne');
-    const data = await Department.findOne({
-        where: {
-            DepartmentId: req.params.deptId
+    try {
+        const deptId = req.params.deptId;
+
+        const department = await Department.findOne({
+            where: {
+                DepartmentId: deptId
+            }
+        });
+
+        if (!department) {
+            return res.status(404).json({ error: 'Department not found' });
         }
-    });
-    res.status(200).json({ data })
+
+        res.status(200).json({ department });
+    } catch (error) {
+        console.error("Error occurred while getting department:", error);
+        res.status(500).json({ error: "Internal server error" });
+    }
 }
 
 
@@ -66,7 +125,7 @@ module.exports = {
     updateDept,
     deleteDept,
     getDepts,
-    getDept,
-    updateUser
+    getDept
+   
 
 }

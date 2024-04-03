@@ -11,23 +11,13 @@ module.exports=(sequelize, DataTypes)=>{
     type: DataTypes.STRING,
    //allowNull: false,   
     unique: true,
-    // validate:{
-    //   isAlpha: {
-    //     args: true,
-    //     msg: "incorrect format, Only alphabets are allowed"
-    // }
-    // }
+   
   },
   emailId:{
     type: DataTypes.STRING,
    //allowNull: false,
     unique: true,
-    // validate:{
-    //   isEmail: {
-    //     args: true,
-    //     msg: "Email format incorrect"
-    // }
-    // }
+   
    },
    mobile:{
     type: DataTypes.INTEGER,

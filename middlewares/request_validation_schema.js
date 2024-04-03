@@ -1,8 +1,8 @@
-const { body } = require('express-validator');
+const { body,param } = require('express-validator');
 const userTypesEnum = ['admin', 'hr', 'employee', 'project manager'];
+const deptTypesEnum =['hr','manager','employee','admin']
  const registrationValidator = [
-    // body('userName').isEmpty().withMessage('userName cannot be empty'),
-    // body('userName').isAlpha().withMessage('username should contain only alphabets'),
+  
     body('userName')
     .notEmpty().withMessage('Field cannot be empty')
     .isAlpha().withMessage('Field must contain only alphabetic characters'),
@@ -33,10 +33,66 @@ const userTypesEnum = ['admin', 'hr', 'employee', 'project manager'];
     body('password').isLength({min: 6}).withMessage( 'The minimum password length is 6 characters'),
   ]
  
+  const userIdBodyValidator =[
+    
+    body('UserId').not().isEmpty().withMessage('Field cannot be empty'),
+    body('UserId').isInt().withMessage('Invalid userId')
 
+  ]
 
+  const userIdParamsValidator =[
+    
+    param('UserId').not().isEmpty().withMessage('Field cannot be empty'),
+    param('UserId').isInt().withMessage('Invalid userId')
+
+  ]
+
+  const deptValidator =[
+    body('departmentName').not().isEmpty().withMessage('Field cannot be empty'),
+    body('departmentName') .isAlpha().withMessage('Field must contain only alphabetic characters'),
+    body('status').isBoolean().withMessage('boolean values only')
+    // body('IsActive').isIn(userTypesEnum).withMessage('Invalid user type. Must be one of: admin, hr, employee, project manager'),
+  ]
+
+  const deptIdBodyValidator =[
+    body('deptId').not().isEmpty().withMessage('Field cannot be empty'),
+    body('deptId').isInt().withMessage('Invalid userId')
+  ]
   
+  const deptIdParamsValidator =[
+    param('deptId').not().isEmpty().withMessage('Field cannot be empty'),
+    param('deptId').isInt().withMessage('Invalid userId')
+
+  ]
+
+  const designationValidator =[
+    body('designationName').not().isEmpty().withMessage('Field cannot be empty'),
+    body('designationName') .isAlpha().withMessage('Field must contain only alphabetic characters'),
+    body('status').isBoolean().withMessage('boolean values only')
+    // body('IsActive').isIn(userTypesEnum).withMessage('Invalid user type. Must be one of: admin, hr, employee, project manager'),
+  ]
+
+  const designationIdBodyValidator =[
+    body('designationId').not().isEmpty().withMessage('Field cannot be empty'),
+    body('designationId').isInt().withMessage('Invalid userId')
+  ]
+  
+  const designationIdParamsValidator =[
+    param('designationId').not().isEmpty().withMessage('Field cannot be empty'),
+    param('designationId').isInt().withMessage('Invalid userId')
+
+  ]
+
+
   module.exports={
     loginValidator,
-    registrationValidator
+    registrationValidator,
+    userIdParamsValidator,
+    userIdBodyValidator,
+    deptValidator,
+    deptIdBodyValidator,
+    deptIdParamsValidator,
+    designationValidator,
+    designationIdBodyValidator,
+    designationIdParamsValidator
   }
